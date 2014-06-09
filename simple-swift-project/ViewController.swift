@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var checkTime : UILabel
+    @IBOutlet var night : UIButton
+    
     let dateFormatter = NSDateFormatter()
     let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
 
