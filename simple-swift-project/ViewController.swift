@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet var checkTime : UILabel
     @IBOutlet var night : UIButton
@@ -34,12 +34,39 @@ class ViewController: UIViewController {
         
         night.addTarget(self, action: "changeBackgroundColor", forControlEvents: UIControlEvents.TouchUpInside)
         
+
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    var listForTableView = ["Apple", "Banana", "Coconut", "Durian", "Elderberry", "Fig", "Guava"]
+    
+    // Asking number of rows in the section
+    func tableView(tableView: UITableView!, numberOfRowsInSection section:    Int) -> Int {
+        return listForTableView.count
+    }
+    
+    
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        
+        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SimpleCell")
+        
+        cell.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
+        cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
+        
+        return cell
+    }
+    
+    
+    
+    
     // ======= functions =========
 
     func callback_01(sender: UIButton!) {
