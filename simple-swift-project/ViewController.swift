@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  simple-swift-project
 //
-//  Created by Berkelium on 6/8/14.
+//  Created by ctrl-alt-del on 6/8/14.
 //  Copyright (c) 2014 ctrl-alt-del. All rights reserved.
 //
 
@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet var night : UIButton
     
     let dateFormatter = NSDateFormatter()
-    let button   = UIButton.buttonWithType(UIButtonType.System) as UIButton
+    let greetingButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
 
         
     override func viewDidLoad() {
@@ -24,12 +24,12 @@ class ViewController: UIViewController {
 
         dateFormatter.dateFormat = "h:mm:ss a"
         
+        greetingButton.frame = CGRectMake(25, 25, 250, 25)
+        greetingButton.setTitle("Say \"Hello World!\" and display time", forState: UIControlState.Normal)
+        greetingButton.addTarget(self, action: "callback_01:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        button.frame = CGRectMake(25, 25, 250, 25)
-        button.setTitle("Say \"Hello World!\" and display time", forState: UIControlState.Normal)
-        button.addTarget(self, action: "callback_01:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.view.addSubview(greetingButton)
         
-        self.view.addSubview(button)
         
     }
 
