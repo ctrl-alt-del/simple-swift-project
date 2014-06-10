@@ -13,6 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet var checkTime : UILabel
     @IBOutlet var night : UIButton
     
+    @IBOutlet var tableView : UITableView
+    
     let dateFormatter = NSDateFormatter()
     let greetingButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
 
