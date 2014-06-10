@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         
         self.view.addSubview(greetingButton)
         
+        night.addTarget(self, action: "changeBackgroundColor", forControlEvents: UIControlEvents.TouchUpInside)
         
     }
 
@@ -37,6 +38,7 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    // ======= functions =========
 
     func callback_01(sender: UIButton!) {
         
@@ -48,6 +50,23 @@ class ViewController: UIViewController {
     
     func updateTimerFn() {
         checkTime.text = dateFormatter.stringFromDate(NSDate())
+    }
+    
+    func changeBackgroundColor() {
+        
+        if (night.titleLabel.text.compare("Night") == 0) {
+            night.setTitle("Day", forState: UIControlState.Normal)
+            night.backgroundColor = UIColor.blackColor()
+            checkTime.textColor = UIColor.whiteColor()
+            tableView.backgroundColor = UIColor.blackColor()
+            self.view.backgroundColor = UIColor.blackColor()
+        } else {
+            night.setTitle("Night", forState: UIControlState.Normal)
+            night.backgroundColor = UIColor.whiteColor()
+            checkTime.textColor = UIColor.blackColor()
+            tableView.backgroundColor = UIColor.whiteColor()
+            self.view.backgroundColor = UIColor.whiteColor()
+        }
     }
 }
 
