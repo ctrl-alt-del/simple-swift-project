@@ -10,6 +10,9 @@ import UIKit
 
 class NewTaskViewController: UIViewController {
 
+    @IBAction func saveTask(sender : UIButton!) {
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }
