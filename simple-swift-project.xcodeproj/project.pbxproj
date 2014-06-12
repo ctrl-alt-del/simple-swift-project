@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		383C474E1949810A00073EEF /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383C474D1949810A00073EEF /* TaskViewController.swift */; };
 		3855883D19497AC500F1DC07 /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3855883C19497AC500F1DC07 /* NewTaskViewController.swift */; };
 		38DDC85319451C2500389425 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDC85219451C2500389425 /* AppDelegate.swift */; };
 		38DDC85519451C2500389425 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDC85419451C2500389425 /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		383C474D1949810A00073EEF /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		3855883C19497AC500F1DC07 /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
 		38DDC84D19451C2500389425 /* simple-swift-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-swift-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DDC85119451C2500389425 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				38DDC85219451C2500389425 /* AppDelegate.swift */,
 				38DDC85419451C2500389425 /* ViewController.swift */,
+				383C474D1949810A00073EEF /* TaskViewController.swift */,
 				3855883C19497AC500F1DC07 /* NewTaskViewController.swift */,
 				38DDC85619451C2500389425 /* Main.storyboard */,
 				38DDC85919451C2500389425 /* Images.xcassets */,
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38DDC85519451C2500389425 /* ViewController.swift in Sources */,
+				383C474E1949810A00073EEF /* TaskViewController.swift in Sources */,
 				3855883D19497AC500F1DC07 /* NewTaskViewController.swift in Sources */,
 				38DDC85319451C2500389425 /* AppDelegate.swift in Sources */,
 			);

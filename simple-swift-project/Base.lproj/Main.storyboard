@@ -95,7 +95,7 @@
                         <viewControllerLayoutGuide type="top" id="9ya-Vc-fi0"/>
                         <viewControllerLayoutGuide type="bottom" id="rKm-jl-G32"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hwg-ZJ-taH" customClass="NewTaskViewController">
+                    <view key="view" contentMode="scaleToFill" id="hwg-ZJ-taH" customClass="NewTaskViewController" customModule="simple_swift_project" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -122,6 +122,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kFw-eb-zcB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1468" y="141"/>
+        </scene>
+        <!--Task View Controller-->
+        <scene sceneID="hHJ-hx-xU1">
+            <objects>
+                <viewController id="rSB-p4-xxW" customClass="TaskViewController" customModule="simple_swift_project" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jD9-KQ-B53"/>
+                        <viewControllerLayoutGuide type="bottom" id="5fR-kD-LIH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7qr-qa-x3f">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vBv-H8-FtP">
+                                <rect key="frame" x="20" y="88" width="440" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WQi-4i-chc">
+                                <rect key="frame" x="20" y="123" width="440" height="30"/>
+                                <state key="normal" title="Completed">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="completeTask:" destination="rSB-p4-xxW" eventType="touchUpInside" id="lkx-Uc-YRc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    </view>
+                    <connections>
+                        <outlet property="taskLabel" destination="vBv-H8-FtP" id="jfc-hS-WhM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="geI-3t-Gox" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2000" y="141"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dkO-5j-e9N">
