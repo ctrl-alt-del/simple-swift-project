@@ -95,7 +95,7 @@
                         <viewControllerLayoutGuide type="top" id="9ya-Vc-fi0"/>
                         <viewControllerLayoutGuide type="bottom" id="rKm-jl-G32"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hwg-ZJ-taH">
+                    <view key="view" contentMode="scaleToFill" id="hwg-ZJ-taH" customClass="NewTaskViewController">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
