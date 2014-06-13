@@ -14,6 +14,7 @@ protocol APIControllerProtocol {
 
 class APIController: NSObject {
     
+    var delegate: APIControllerProtocol?
     
     var data: NSMutableData = NSMutableData()
     
@@ -36,6 +37,7 @@ class APIController: NSObject {
         // Deserialization JSON into HashMap assuming the data received is a serialized JSON
         var json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
         
+        self.delegate?.didReceiveAPIResults(json)
         println("--> Data package completed!")
     }
     
