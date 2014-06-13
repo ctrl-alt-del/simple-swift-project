@@ -51,6 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         night.addTarget(self, action: "changeBackgroundColor", forControlEvents: UIControlEvents.TouchUpInside)
         
         println(">>> calling API")
+        api.delegate = self
         api.iTuneAPISearchRequest("apple")
         
         println(">>> done with API \(api.delegate?)")
