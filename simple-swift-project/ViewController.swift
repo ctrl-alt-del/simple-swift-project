@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, APIControllerProtocol {
     
     @IBOutlet var checkTime : UILabel
     @IBOutlet var night : UIButton
@@ -23,6 +23,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let greetingButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
     var api: APIController = APIController()
+    
+    func didReceiveAPIResults(results: NSDictionary) {
+        // Store the results in our table data array
+        println("------> didRecieveAPIResults is called, with results.counts = \(results.count)")
+        if (results.count > 0) {
+            // Cast and JSON Array into NSArray
+            self.tableData = results["results"] as NSArray
+            self.appsTableView.reloadData()
+            println("===> display API results")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
