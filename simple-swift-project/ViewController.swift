@@ -127,63 +127,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBOutlet var appsTableView : UITableView
-    
-    func iTuneAPISearchRequest(givenTerms: String) {
-        
-        // Replace spaces with + signs
-        var terms = givenTerms.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.CaseInsensitiveSearch, range: nil)
-        
-        // Escape
-        var escapedTerm = terms.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        
-        // Compose url string
-        var urlPath = "https://itunes.apple.com/search?term=\(escapedTerm)&media=software"
-        
-        // Make an NSURL object based on the urlPath
-        var url: NSURL = NSURL(string: urlPath)
-        
-        // Establish an NSURLRequest object
-        var request: NSURLRequest = NSURLRequest(URL: url)
-        
-        // Make an NSURLConnection object based on the NSURLRequest created
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)
-        
-        println("Search iTunes API at URL \(url)")
-        
-        // Conneceting to the internet
-        connection.start()
-    }
-    
     var data: NSMutableData = NSMutableData()
     var tableData: NSArray = NSArray()
-    
-    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
-        // Get the response of a request, setup a mutable data object to ready for receiving data
-        self.data = NSMutableData()
-    }
-    
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        // Append recieved data
-        self.data.appendData(data)
-    }
-    
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        
-        var err: NSError
-        
-        // Deserialization JSON into HashMap assuming the data received is a serialized JSON
-        var json: NSDictionary = NSJSONSerialization.JSONObjectWithData(data, options:    NSJSONReadingOptions.MutableContainers, error: nil) as NSDictionary
-        
-        // Make sure the json contains info, and the "result" package inside it contains info as well
-        if (json.count > 0 && json["results"].count>0) {
-            
-            // Cast and JSON Array into NSArray
-            var results: NSArray = json["results"] as NSArray
-            self.tableData = results
-            
-            // Activate the "tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell!" function in above to reload the info into the table view
-            self.appsTableView.reloadData()
-        }
-    }
 }
 
