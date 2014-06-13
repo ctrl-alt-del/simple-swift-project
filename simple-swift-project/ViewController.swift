@@ -62,17 +62,41 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SimpleCell")
         
-        cell.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
-        cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
-        
+        if (tableView == self.appsTableView) {
+            
+            // Get the data of the current row and make cast it as an HashMap aka NSDictinary in this case
+            var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+            
+            // Get the name
+            var name: String = rowData["trackName"] as String
+            
+            // Get the artworkUrl60 key to get an image URL for the app's thumbnail
+            var urlString: NSString = rowData["artworkUrl60"] as NSString
+            var imgURL: NSURL = NSURL(string: urlString)
+            
+            // Get image data from the url
+            var imageData: NSData = NSData(contentsOfURL: imgURL)
+            
+            // Get the price
+            var price: NSString = rowData["formattedPrice"] as NSString
+            
+            cell.text = name
+            cell.detailTextLabel.text = price
+            cell.image = UIImage(data: imageData)
+            
+        } else if (tableView == self.tableView) {
+            cell.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
+            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
+        } else {
+            cell.text = "Error"
+            cell.detailTextLabel.text = "Oops.."
+        }
         return cell
     }
     
     
-    
-    
     // ======= functions =========
-
+    
     func callback_01(sender: UIButton!) {
         
         var date = NSDate()
