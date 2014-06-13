@@ -47,12 +47,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var listForTableView = ["Apple", "Banana", "Coconut", "Durian", "Elderberry", "Fig", "Guava"]
     
-    // Asking number of rows in the section
-    func tableView(tableView: UITableView!, numberOfRowsInSection section:    Int) -> Int {
-        return listForTableView.count
+    
+    func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        if (tableView == appsTableView) {
+            return tableData.count
+        } else if (tableView == self.tableView) {
+            return listForTableView.count
+        } else {
+            return 0;
+        }
     }
-    
-    
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
