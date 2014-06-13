@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -14,10 +15,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet var night : UIButton
     
     @IBOutlet var tableView : UITableView
+    @IBOutlet var appsTableView : UITableView
+    
+    var tableData: NSArray = NSArray()
     
     let dateFormatter = NSDateFormatter()
     let greetingButton   = UIButton.buttonWithType(UIButtonType.System) as UIButton
     
+    var api: APIController = APIController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +39,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         night.addTarget(self, action: "changeBackgroundColor", forControlEvents: UIControlEvents.TouchUpInside)
         
-        self.iTuneAPISearchRequest("apple")
+        println(">>> calling API")
+        api.iTuneAPISearchRequest("apple")
+        
+        println(">>> done with API \(api.delegate?)")
         
     }
     
@@ -123,11 +131,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.view.backgroundColor = UIColor.whiteColor()
         }
     }
-    
-    
-    
-    @IBOutlet var appsTableView : UITableView
-    var data: NSMutableData = NSMutableData()
-    var tableData: NSArray = NSArray()
 }
 
