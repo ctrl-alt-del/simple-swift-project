@@ -129,5 +129,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @IBOutlet var appsTableView : UITableView
+    var data: NSMutableData = NSMutableData()
+    var tableData: NSArray = NSArray()
 }
 
