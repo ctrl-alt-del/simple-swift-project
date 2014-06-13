@@ -8,6 +8,9 @@
 
 import Foundation
 
+protocol APIControllerProtocol {
+    func didReceiveAPIResults(results: NSDictionary)
+}
 
 class APIController: NSObject {
     
