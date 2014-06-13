@@ -97,5 +97,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.view.backgroundColor = UIColor.whiteColor()
         }
     }
+    
+    
+    
+    @IBOutlet var appsTableView : UITableView
 }
 
