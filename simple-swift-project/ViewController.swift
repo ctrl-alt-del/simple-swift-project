@@ -78,7 +78,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
-        let cell: UITableViewCell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SimpleCell")
+        let cellRef: String = "SimpleCell"
+        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellRef) as UITableViewCell
+        
+        // instantiate cell if it is not yet existed
+        if (cell == nil) {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellRef)
+        }
         
         if (tableView == self.appsTableView) {
             
