@@ -75,10 +75,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return 0;
         }
     }
-    
+
+    let cellRef: String = "SimpleCell"
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        
-        let cellRef: String = "SimpleCell"
+
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellRef) as UITableViewCell
         
         // instantiate cell if it is not yet existed
