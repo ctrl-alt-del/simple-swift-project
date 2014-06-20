@@ -80,22 +80,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return 0;
         }
     }
-
-    let cellRef: String = "SimpleCell"
     
     let simpleCellRef: String = "SimpleCell"
     let apiCellRef: String = "ApiCell"
     
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-
-        var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellRef) as UITableViewCell
-        
-        // instantiate cell if it is not yet existed
-        if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellRef)
-        }
         
         if (tableView == self.appsTableView) {
+            
+            var cell: UITableViewCell = appsTableView.dequeueReusableCellWithIdentifier(apiCellRef) as UITableViewCell
             
             // Get the data of the current row and make cast it as an HashMap aka NSDictinary in this case
             var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
@@ -114,22 +107,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var price: NSString = rowData["formattedPrice"] as NSString
             
             cell.text = name
-            cell.detailTextLabel.text = price
-            cell.image = UIImage(data: imageData)
+//            cell.detailTextLabel.text = price
             
+//            cell.detailTextLabel.text = price
+            
+            cell.image = UIImage(data: imageData)
+            return cell
         } else if (tableView == self.tableView) {
+            
+            var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(simpleCellRef) as UITableViewCell
+            
             cell.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
-            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
+//            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
+            return cell
         } else {
+            
+            var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(simpleCellRef) as UITableViewCell
+            
             cell.text = "Error"
-            cell.detailTextLabel.text = "Oops.."
+//            cell.detailTextLabel.text = "Oops.."
+            return cell
         }
-        return cell
+        
     }
     
     // callback function of each cell
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-
+        
         var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
         
         var name: String = rowData["trackName"] as String
@@ -141,7 +145,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         alert.addButtonWithTitle("Ok")
         alert.show()
     }
-
+    
     
     
     // ======= functions =========
