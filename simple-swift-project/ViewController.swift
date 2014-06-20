@@ -38,6 +38,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: simpleCellRef)
+        self.appsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: apiCellRef)
+        
+        
         var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimerFn"), userInfo: nil, repeats: true)
         
         dateFormatter.dateFormat = "h:mm:ss a"
@@ -77,6 +82,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     let cellRef: String = "SimpleCell"
+    
+    let simpleCellRef: String = "SimpleCell"
+    let apiCellRef: String = "ApiCell"
+    
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
 
         var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(cellRef) as UITableViewCell
