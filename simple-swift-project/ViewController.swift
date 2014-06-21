@@ -107,9 +107,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var price: NSString = rowData["formattedPrice"] as NSString
             
             cell.text = name
-//            cell.detailTextLabel.text = price
+            //            cell.detailTextLabel.text = price
             
-//            cell.detailTextLabel.text = price
+            //            cell.detailTextLabel.text = price
             
             cell.image = UIImage(data: imageData)
             return cell
@@ -118,14 +118,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(simpleCellRef) as UITableViewCell
             
             cell.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
-//            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
+            //            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
             return cell
         } else {
             
             var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(simpleCellRef) as UITableViewCell
             
             cell.text = "Error"
-//            cell.detailTextLabel.text = "Oops.."
+            //            cell.detailTextLabel.text = "Oops.."
             return cell
         }
         
@@ -134,16 +134,35 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // callback function of each cell
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         
-        var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
-        
-        var name: String = rowData["trackName"] as String
-        var formattedPrice: String = rowData["formattedPrice"] as String
-        
-        var alert: UIAlertView = UIAlertView()
-        alert.title = name
-        alert.message = formattedPrice
-        alert.addButtonWithTitle("Ok")
-        alert.show()
+        if (tableView == self.appsTableView) {
+            var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+            
+            var name: String = rowData["trackName"] as String
+            var formattedPrice: String = rowData["formattedPrice"] as String
+            
+            var alert: UIAlertView = UIAlertView()
+            alert.title = name
+            alert.message = formattedPrice
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+            
+        } else if (tableView == self.tableView) {
+            
+            var alert: UIAlertView = UIAlertView()
+            alert.title = self.listForTableView[indexPath.row]
+            alert.message = "Fruit #\(indexPath.row)"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+            
+        } else {
+            
+            var alert: UIAlertView = UIAlertView()
+            alert.title = "Error"
+            alert.message = "You pressed item #\(indexPath.row)"
+            alert.addButtonWithTitle("Ok")
+            alert.show()
+            
+        }
     }
     
     
