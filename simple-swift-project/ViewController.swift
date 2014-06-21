@@ -39,8 +39,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: simpleCellRef)
-        self.appsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: apiCellRef)
+//        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: simpleCellRef)
+//        self.appsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: apiCellRef)
         
         
         var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimerFn"), userInfo: nil, repeats: true)
@@ -81,14 +81,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    let simpleCellRef: String = "SimpleCell"
     let apiCellRef: String = "ApiCell"
-    
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
+        var cell: UITableViewCell? = appsTableView.dequeueReusableCellWithIdentifier(apiCellRef) as? UITableViewCell
+        
+        if !cell {
+            cell = UITableViewCell(style:.Subtitle, reuseIdentifier: apiCellRef)
+        }
+        
         if (tableView == self.appsTableView) {
-            
-            var cell: UITableViewCell = appsTableView.dequeueReusableCellWithIdentifier(apiCellRef) as UITableViewCell
             
             // Get the data of the current row and make cast it as an HashMap aka NSDictinary in this case
             var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
@@ -106,26 +108,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Get the price
             var price: NSString = rowData["formattedPrice"] as NSString
             
-            cell.text = name
-            //            cell.detailTextLabel.text = price
+            cell!.text = name
+            cell!.detailTextLabel.text = price
             
-            //            cell.detailTextLabel.text = price
-            
-            cell.image = UIImage(data: imageData)
+            cell!.image = UIImage(data: imageData)
             return cell
         } else if (tableView == self.tableView) {
             
-            var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(simpleCellRef) as UITableViewCell
-            
-            cell.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
-            //            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
+            cell!.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
+            cell!.detailTextLabel.text = "Fruit #\(indexPath.row)"
             return cell
         } else {
             
-            var cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(simpleCellRef) as UITableViewCell
-            
-            cell.text = "Error"
-            //            cell.detailTextLabel.text = "Oops.."
+            cell!.text = "Error"
+            cell!.detailTextLabel.text = "Oops.."
             return cell
         }
         
