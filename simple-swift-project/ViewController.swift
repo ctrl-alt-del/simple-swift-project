@@ -139,35 +139,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // callback function of each cell
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         
-        if (tableView == self.appsTableView) {
+        //Define a UIAlertView with Swift way
+        var alert = UIAlertView()
+        alert.addButtonWithTitle("Ok")
+        
+        switch tableView {
+        case self.appsTableView:
+            
             var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
             
             var name: String = rowData["trackName"] as String
             var formattedPrice: String = rowData["formattedPrice"] as String
             
-            var alert: UIAlertView = UIAlertView()
             alert.title = name
             alert.message = formattedPrice
-            alert.addButtonWithTitle("Ok")
-            alert.show()
             
-        } else if (tableView == self.tableView) {
-            
-            var alert: UIAlertView = UIAlertView()
+        case self.tableView:
             alert.title = self.listForTableView[indexPath.row]
             alert.message = "Fruit #\(indexPath.row)"
-            alert.addButtonWithTitle("Ok")
-            alert.show()
             
-        } else {
-            
-            var alert: UIAlertView = UIAlertView()
+        default:
             alert.title = "Error"
             alert.message = "You pressed item #\(indexPath.row)"
-            alert.addButtonWithTitle("Ok")
-            alert.show()
-            
         }
+        
+        alert.show()
     }
     
     
