@@ -24,6 +24,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var api: APIController = APIController()
     
+    
+    /**
+    * dictionary used to cache images
+    */
+    var imageCache = NSMutableDictionary()
+    
     func didReceiveAPIResults(results: NSDictionary) {
         // Store the results in our table data array
         println("------> didRecieveAPIResults is called, with results.counts = \(results.count)")
@@ -38,11 +44,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-//        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: simpleCellRef)
-//        self.appsTableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: apiCellRef)
-        
-        
         var timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("updateTimerFn"), userInfo: nil, repeats: true)
         
         dateFormatter.dateFormat = "h:mm:ss a"
@@ -70,7 +71,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     var listForTableView = ["Apple", "Banana", "Coconut", "Durian", "Elderberry", "Fig", "Guava"]
     
-    
+    /**
+    * Overriden Method
+    * Method used to return the count of the selected tableView object
+    *
+    * @param tableView := the selected UITableView object
+    * @param section := the number of rows in section
+    *
+    * @return the count of selected UITableView
+    */
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         if (tableView == appsTableView) {
             return tableData.count
@@ -163,8 +172,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    // ======= functions =========
+    // MARK: Private Methods
     
+    /**
+    * private method used to change the text with specified string
+    */
     func callback_01(sender: UIButton!) {
         
         var date = NSDate()
@@ -173,10 +185,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         println("Hello World! " + dateFormatter.stringFromDate(date))
     }
     
+    
+    /**
+    * private method used to change the text with current time
+    */
     func updateTimerFn() {
         checkTime.text = dateFormatter.stringFromDate(NSDate())
     }
     
+    /**
+    * private method used to change the background color of the app
+    */
     func changeBackgroundColor() {
         
         if (night.titleLabel.text.compare("Night") == 0) {
