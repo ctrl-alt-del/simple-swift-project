@@ -81,12 +81,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     * @return the count of selected UITableView
     */
     func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if (tableView == appsTableView) {
+        switch tableView{
+        case appsTableView:
             return tableData.count
-        } else if (tableView == self.tableView) {
+        case self.tableView:
             return listForTableView.count
-        } else {
-            return 0;
+        default:
+            return 0
         }
     }
     
