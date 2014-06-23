@@ -118,19 +118,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             // Get the price
             var price: NSString = rowData["formattedPrice"] as NSString
             
-            cell!.text = name
+            cell!.textLabel.text = name
             cell!.detailTextLabel.text = price
             
-            cell!.image = UIImage(data: imageData)
+            cell!.imageView.image = UIImage(data: imageData)
             return cell
         } else if (tableView == self.tableView) {
             
-            cell!.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
+            cell!.textLabel.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
             cell!.detailTextLabel.text = "Fruit #\(indexPath.row)"
             return cell
         } else {
             
-            cell!.text = "Error"
+            cell!.textLabel.text = "Error"
             cell!.detailTextLabel.text = "Oops.."
             return cell
         }

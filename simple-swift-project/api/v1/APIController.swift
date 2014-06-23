@@ -16,7 +16,7 @@ class APIController: NSObject {
     
     var delegate: APIControllerProtocol?
     
-    var data: NSMutableData = NSMutableData()
+    var data = NSMutableData()
     
     func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
         // Get the response of a request, setup a mutable data object to ready for receiving data
@@ -53,13 +53,13 @@ class APIController: NSObject {
         var urlPath = "https://itunes.apple.com/search?term=\(escapedTerm)&media=software"
         
         // Make an NSURL object based on the urlPath
-        var url: NSURL = NSURL(string: urlPath)
+        var url = NSURL(string: urlPath)
         
         // Establish an NSURLRequest object
-        var request: NSURLRequest = NSURLRequest(URL: url)
+        var request = NSURLRequest(URL: url)
         
         // Make an NSURLConnection object based on the NSURLRequest created
-        var connection: NSURLConnection = NSURLConnection(request: request, delegate: self, startImmediately: false)
+        var connection = NSURLConnection(request: request, delegate: self, startImmediately: false)
         
         println("Search iTunes API at URL \(url)")
         
