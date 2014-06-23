@@ -91,47 +91,74 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    let apiCellRef: String = "ApiCell"
+    let apiCellRef = "ApiCell"
     func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
-        var cell: UITableViewCell? = appsTableView.dequeueReusableCellWithIdentifier(apiCellRef) as? UITableViewCell
-        
-        if !cell {
-            cell = UITableViewCell(style:.Subtitle, reuseIdentifier: apiCellRef)
-        }
+        var cell = UITableViewCell(style:.Subtitle, reuseIdentifier: apiCellRef)
         
         if (tableView == self.appsTableView) {
             
             // Get the data of the current row and make cast it as an HashMap aka NSDictinary in this case
-            var rowData: NSDictionary = self.tableData[indexPath.row] as NSDictionary
+            var rowData = self.tableData[indexPath.row] as NSDictionary
             
-            // Get the name
-            var name: String = rowData["trackName"] as String
+            var name = rowData["trackName"] as String
+            var price = rowData["formattedPrice"] as NSString
             
-            // Get the artworkUrl60 key to get an image URL for the app's thumbnail
-            var urlString: NSString = rowData["artworkUrl60"] as NSString
-            var imgURL: NSURL = NSURL(string: urlString)
+            cell.textLabel.text = name
+            cell.detailTextLabel.text = price
             
-            // Get image data from the url
-            var imageData: NSData = NSData(contentsOfURL: imgURL)
+            /* use an asynchrousus request closure */
+            dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0),
+                {
+                    var urlString: NSString = rowData["artworkUrl60"] as NSString
+                    
+                    // check cache for the image
+                    var image: UIImage? = self.imageCache.valueForKey("\(name) - \(urlString)") as? UIImage
+                    
+                    if( !image? ) {
+                        // download image if it does not exist
+                        var imgURL = NSURL(string: urlString)
+                        
+                        // Download an NSData representation of the image at the URL
+                        var request: NSURLRequest = NSURLRequest(URL: imgURL)
+                        var urlConnection: NSURLConnection = NSURLConnection(request: request, delegate: self)
+                        
+                        NSURLConnection.sendAsynchronousRequest(request,
+                            queue: NSOperationQueue.mainQueue(),
+                            completionHandler: {(
+                                response: NSURLResponse!,data: NSData!,error: NSError!) -> Void in
+                                
+                                if !error? {
+                                    
+                                    image = UIImage(data: data)
+                                    
+                                    // put image into cache
+                                    self.imageCache.setValue(image, forKey: "\(name) - \(urlString)")
+                                    cell.imageView.image = image
+                                    
+                                } else {
+                                    println("Error: \(error.localizedDescription)")
+                                }
+                                
+                            })
+                        
+                    } else {
+                        println("reuse images ....")
+                        cell.imageView.image = image
+                    }
+                }
+            )
             
-            // Get the price
-            var price: NSString = rowData["formattedPrice"] as NSString
-            
-            cell!.textLabel.text = name
-            cell!.detailTextLabel.text = price
-            
-            cell!.imageView.image = UIImage(data: imageData)
             return cell
         } else if (tableView == self.tableView) {
             
-            cell!.textLabel.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
-            cell!.detailTextLabel.text = "Fruit #\(indexPath.row)"
+            cell.textLabel.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
+            cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
             return cell
         } else {
             
-            cell!.textLabel.text = "Error"
-            cell!.detailTextLabel.text = "Oops.."
+            cell.textLabel.text = "Error"
+            cell.detailTextLabel.text = "Oops.."
             return cell
         }
         
