@@ -96,7 +96,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         var cell = UITableViewCell(style:.Subtitle, reuseIdentifier: apiCellRef)
         
-        if (tableView == self.appsTableView) {
+        switch tableView {
+        case self.appsTableView:
             
             // Get the data of the current row and make cast it as an HashMap aka NSDictinary in this case
             var rowData = self.tableData[indexPath.row] as NSDictionary
@@ -149,19 +150,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 }
             )
             
-            return cell
-        } else if (tableView == self.tableView) {
-            
+        case self.tableView:
             cell.textLabel.text = "#\(indexPath.row) " + listForTableView[indexPath.row]
             cell.detailTextLabel.text = "Fruit #\(indexPath.row)"
-            return cell
-        } else {
-            
+        default:
             cell.textLabel.text = "Error"
             cell.detailTextLabel.text = "Oops.."
-            return cell
         }
-        
+        return cell
     }
     
     // callback function of each cell
