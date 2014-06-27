@@ -163,9 +163,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // callback function of each cell
     func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         
-        //Define a UIAlertView with Swift way
-        var alert = UIAlertView()
-        alert.addButtonWithTitle("Ok")
+        var alert = UIAlertController(title: "Details",
+            message: "",
+            preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Ok",
+            style: .Default) { action in
+                alert.dismissViewControllerAnimated(true) {}
+        }
+        alert.addAction(cancelAction)
         
         switch tableView {
         case self.appsTableView:
@@ -187,7 +193,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             alert.message = "You pressed item #\(indexPath.row)"
         }
         
-        alert.show()
+        presentViewController(alert, animated: true) {}
     }
     
     
